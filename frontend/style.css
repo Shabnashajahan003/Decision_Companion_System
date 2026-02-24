@@ -102,3 +102,13 @@ padding:15px 20px;
 }
 
 }
+.logo h2 {
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 22px;
+}
+
+.logo i {
+color: #4CAF50;
+}

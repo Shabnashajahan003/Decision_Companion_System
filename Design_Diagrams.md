@@ -1,6 +1,7 @@
 # DESIGN DIAGRAMS
 #### ARCHITECTURE DIAGRAM
-![Architecture Diagram](https://github.com/user-attachments/assets/1f14ba0c-78ea-4b57-a6d7-9536a221471c)
+![Architecture Diagram](https://github.com/user-attachments/assets/687a4bc1-ec47-42a5-ac75-aa130e08d335)
+
 
 ####  DATA FLOW DIAGRAM 
 ![dfd0](https://github.com/user-attachments/assets/5ee36a92-562f-4683-a4c2-2d41d6821676)

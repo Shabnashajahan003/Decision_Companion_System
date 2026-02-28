@@ -57,6 +57,104 @@ function generateOptions() {
         });
     }
 }
+function calculate() {
+    document.getElementById("errorMsg").innerText = "";
 
+    const decisionName = document.getElementById("decisionName").value;
 
+    if (!decisionName) {
+        document.getElementById("errorMsg").innerText =
+            "Please enter decision name";
+        return;
+    }
 
+    // CHECK WEIGHT TOTAL
+    let totalWeight = 0;
+    criteria.forEach(c => totalWeight += parseFloat(c.weight));
+
+    if (Math.abs(totalWeight - 1) > 0.01) {
+        document.getElementById("errorMsg").innerText =
+            "Total weight must equal 1";
+        return;
+    }
+
+    let oCount = parseInt(document.getElementById("optionCount").value);
+    options = [];
+
+    // READ OPTIONS
+    for (let i = 0; i < oCount; i++) {
+        let option = {
+            name: document.getElementById(`oname${i}`).value,
+            values: [],
+            score: 0
+        };
+
+        criteria.forEach((c, index) => {
+            option.values.push(
+                parseFloat(document.getElementById(`oval${i}_${index}`).value)
+            );
+        });
+
+        options.push(option);
+    }
+
+    // IMPORTANT FIX — RESET SCORES
+    options.forEach(o => o.score = 0);
+
+    // NORMALIZATION + WEIGHTED SCORE
+    criteria.forEach((c, index) => {
+        let vals = options.map(o => o.values[index]);
+        let min = Math.min(...vals);
+        let max = Math.max(...vals);
+
+        options.forEach(o => {
+
+            let norm;
+
+            if (max === min) {
+                norm = 1;
+            } else if (c.type === "cost") {
+                // LOWER IS BETTER
+                norm = (max - o.values[index]) / (max - min);
+            } else {
+                // HIGHER IS BETTER
+                norm = (o.values[index] - min) / (max - min);
+            }
+
+            o.score += norm * c.weight;
+        });
+    });
+
+    // SORT BEST OPTION
+    options.sort((a, b) => b.score - a.score);
+
+    const scores = options.map(o => o.score);
+
+    // SAVE RESULTS
+    localStorage.setItem("results", JSON.stringify(options));
+
+    // SAVE FOR EDIT FEATURE
+    localStorage.setItem("decisionData", JSON.stringify({
+        decisionName: decisionName,
+        criteria: criteria,
+        options: options
+    }));
+
+    // SAVE TO DATABASE
+    fetch("http://localhost:5000/saveDecision", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            userEmail: localStorage.getItem("userEmail"),
+            decisionName: decisionName,
+            criteria: criteria,
+            options: options.map(o => o.name),
+            results: scores
+        })
+    });
+
+    // GO TO RESULT PAGE
+    window.location.href = "result.html";
+}

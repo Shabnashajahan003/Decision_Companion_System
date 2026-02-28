@@ -10,7 +10,7 @@
 
 <body>
 
-<!-- HEADER -->
+
 <div class="header">
 <h2><i style="color: #4CAF50;" class="fa-solid fa-brain"></i> Decision Companion</h2>
 
@@ -20,7 +20,7 @@
 </div>
 </div>
 
-<!-- STATS -->
+
 <div class="stats-container">
 
 <div class="stat-card">
@@ -45,7 +45,6 @@
 
 <div class="main-container">
 
-<!-- DECISION SECTION -->
 <div class="card-large">
 
 <button class="primary-btn" onclick="startDecision()">
@@ -79,7 +78,7 @@ Calculate Best Option
 
 </div>
 
-<!-- HISTORY -->
+
 <div class="history-section">
 <h2><i class="fa-solid fa-clock-rotate-left"></i> Decision History</h2>
 
@@ -103,7 +102,6 @@ window.location.href = "login.html";
 const username = email.split("@")[0];
 document.getElementById("welcomeUser").innerText = username;
 
-/* LOAD HISTORY */
 function loadHistory() {
 
 fetch(`http://localhost:5000/decisions/${email}`)
@@ -113,10 +111,9 @@ fetch(`http://localhost:5000/decisions/${email}`)
 const historyDiv = document.getElementById("history");
 historyDiv.innerHTML = "";
 
-/* TOTAL DECISIONS */
+
 const totalDecisions = data.length;
 
-/* RECENT DECISIONS */
 const now = new Date();
 const recent = data.filter(d => {
 const createdDate = new Date(d.createdAt);
@@ -193,6 +190,49 @@ const text = card.innerText.toLowerCase();
 card.style.display = text.includes(search) ? "block" : "none";
 });
 
+});
+/* EDIT MODE AUTO FILL */
+
+window.addEventListener("load", function () {
+
+const urlParams = new URLSearchParams(window.location.search);
+const editMode = urlParams.get("edit");
+
+if (editMode === "true") {
+
+let data = JSON.parse(localStorage.getItem("decisionData"));
+
+if (!data) return;
+
+
+startDecision();
+
+
+document.getElementById("decisionName").value = data.decisionName;
+
+
+document.getElementById("criteriaCount").value = data.criteria.length;
+generateCriteria();
+
+data.criteria.forEach((c, i) => {
+document.getElementById(`cname${i}`).value = c.name;
+document.getElementById(`cweight${i}`).value = c.weight;
+document.getElementById(`ccost${i}`).value = c.type;
+});
+
+
+document.getElementById("optionCount").value = data.options.length;
+generateOptions();
+
+data.options.forEach((o, i) => {
+document.getElementById(`oname${i}`).value = o.name;
+
+o.values.forEach((val, j) => {
+document.getElementById(`oval${i}_${j}`).value = val;
+});
+});
+
+}
 });
 
 loadHistory();

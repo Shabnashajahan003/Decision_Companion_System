@@ -19,7 +19,7 @@ const User = mongoose.model("users", {
     password: String
 });
 
-/* Decision Schema */
+
 const Decision = mongoose.model("decisions", {
     userEmail: String,
     decisionName: String,
@@ -30,7 +30,7 @@ const Decision = mongoose.model("decisions", {
     createdAt: { type: Date, default: Date.now }
 });
 
-/* Signup */
+
 app.post("/signup", async (req, res) => {
     try {
         const user = new User(req.body);
@@ -41,7 +41,7 @@ app.post("/signup", async (req, res) => {
     }
 });
 
-/* Login */
+
 app.post("/login", async (req, res) => {
     try {
         const user = await User.findOne({
@@ -58,12 +58,12 @@ app.post("/login", async (req, res) => {
         res.json({ success: false });
     }
 });
-/* Logout */
+
 app.post("/logout", (req, res) => {
     res.send("Logged out");
 });
 
-/* Save Decision */
+
 app.post("/saveDecision", async (req, res) => {
     try {
         const { options, results } = req.body;

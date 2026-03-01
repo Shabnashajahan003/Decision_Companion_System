@@ -10,3 +10,8 @@
 
 ####  DECISION LOGIC DIAGRAM
 ![Decision Logic Diagram](https://github.com/user-attachments/assets/9c9d6702-56c7-4d58-a53a-c4c64b0fe537)
+
+####  COMPONENT DIAGRAM
+
+![Component Diagram](https://github.com/user-attachments/assets/7543ffa2-abfc-4759-be08-a999eecadd0a)
+

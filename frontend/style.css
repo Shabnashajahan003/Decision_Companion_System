@@ -90,15 +90,51 @@ font-size:22px;
 font-weight:600;
 }
 
-/* Responsive */
-@media(max-width:600px){
+@media(max-width:900px){
 
-.card{
-padding:25px;
+.main-container{
+padding:30px 20px;
 }
 
 nav{
+padding:16px 25px;
+}
+
+.card{
+max-width:420px;
+}
+
+}
+
+/* Mobile */
+@media(max-width:600px){
+
+nav{
+flex-direction:column;
+align-items:flex-start;
+gap:10px;
 padding:15px 20px;
+}
+
+.logo{
+font-size:20px;
+}
+
+.card{
+padding:25px;
+border-radius:12px;
+}
+
+input{
+padding:11px;
+}
+
+.primary-btn{
+padding:11px;
+}
+
+.secondary-btn{
+padding:9px;
 }
 
 }

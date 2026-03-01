@@ -166,6 +166,8 @@ margin:auto;
 .section h2{
 margin-bottom:40px;
 font-size:32px;
+color:#F8FAFC;
+letter-spacing:0.5px;
 }
 
 .grid{
@@ -188,9 +190,16 @@ transform:translateY(-8px);
 box-shadow:0 10px 25px rgba(0,0,0,0.4);
 background:rgba(255,255,255,0.08);
 }
+.card h3{
+color:#38BDF8;
+margin-bottom:10px;
+}
 
-
-
+.card p{
+color:#CBD5E1;
+font-size:15px;
+line-height:1.5;
+}
 footer{
 margin-top:70px;
 text-align:center;
@@ -227,32 +236,88 @@ transform:translateY(0);
 
 
 
-@media(max-width:768px){
+/* TABLET */
+@media(max-width:1024px){
 
 nav{
-padding:15px 20px;
+padding:15px 30px;
 }
 
 .hero h1{
-font-size:34px;
-}
-
-.hero p{
-font-size:16px;
+font-size:38px;
 }
 
 .process{
 gap:15px;
 }
 
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.nav-buttons{
+width:100%;
+justify-content:flex-start;
+}
+
+.hero{
+padding-top:60px;
+}
+
+.hero h1{
+font-size:30px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.start-btn{
+width:100%;
+max-width:260px;
+}
+
+.process{
+flex-direction:column;
+}
+
+.arrow{
+transform:rotate(90deg);
+}
+
 .step{
-width:150px;
-height:80px;
+width:90%;
+max-width:280px;
+height:70px;
 font-size:15px;
 }
 
 .section{
 padding:60px 20px;
+}
+
+
+}
+
+/* SMALL MOBILE */
+@media(max-width:480px){
+
+.hero h1{
+font-size:26px;
+}
+
+.logo{
+font-size:20px;
+}
+
+.nav-buttons button{
+width:100%;
 }
 
 }
@@ -283,7 +348,7 @@ Analyze multiple options using structured criteria and intelligent scoring
 to identify the most suitable decision quickly and clearly.
 </p>
 
-<button class="start-btn" onclick="goSignup()">Start Now</button>
+<button class="start-btn" onclick="goSignup()">Get Started</button>
 
 <div class="process">
 <div class="step">Add Criteria</div>

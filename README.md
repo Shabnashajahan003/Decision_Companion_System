@@ -2,6 +2,12 @@
 
 A web-based decision support system that helps users evaluate multiple options using structured criteria and weighted scoring.
 The system provides a logical approach to decision-making and identifies the most suitable option based on calculated results.
+#### PROJECT DEMO VIDEO
+
+https://github.com/user-attachments/assets/5a23e76a-428c-493e-83cf-82dcbcfa5d45
+
+ 
+
 #### UNDERSTANDING OF THE PROBLEM
 Many people struggle to make decisions when multiple options and factors are involved. Decisions such as choosing a job, selecting a product, or planning a project often require evaluating several criteria like cost, time, quality, and risk.
 The main problem is that people usually make decisions based on intuition rather than structured analysis. This can lead to confusion and poor decision outcomes.
